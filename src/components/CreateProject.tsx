@@ -174,7 +174,7 @@ export function CreateProject() {
         >
           {/* Mobile Steps - Vertical Layout */}
           <div className="lg:hidden space-y-4">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <div key={step.number} className="flex items-center space-x-4">
                 <div
                   className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors flex-shrink-0 ${

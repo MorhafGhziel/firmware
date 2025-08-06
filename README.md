@@ -1,7 +1,5 @@
 # OnlyFounders
 
-A crypto investment platform where founders can launch projects and investors can discover and invest in them.
-
 ## Features
 
 ### Landing Page
@@ -32,12 +30,6 @@ A crypto investment platform where founders can launch projects and investors ca
 - **Investors**: Can browse and invest in projects
 - **Admins**: Can approve projects and manage the platform
 
-## How to Run
-
-1. Install dependencies: `npm install`
-2. Start the app: `npm run dev`
-3. Open http://localhost:5173 in your browser
-
 ## Navigation Guide
 
 - **Home**: View featured projects and platform stats
@@ -45,4 +37,3 @@ A crypto investment platform where founders can launch projects and investors ca
 - **Launch Project**: Create a new project (for founders)
 - **Portfolio**: Track your investments and projects
 - **Admin Panel**: Click the character icon (👤) in header for admin features
-# firmware

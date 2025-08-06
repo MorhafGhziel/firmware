@@ -167,52 +167,94 @@ export function CreateProject() {
 
         {/* Progress Steps */}
         <motion.div
-          className="mb-12"
+          className="mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="flex items-center justify-between mb-4">
+          {/* Mobile Steps - Vertical Layout */}
+          <div className="lg:hidden space-y-4">
             {steps.map((step, index) => (
-              <div key={step.number} className="flex items-center">
+              <div key={step.number} className="flex items-center space-x-4">
                 <div
-                  className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-colors ${
+                  className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors flex-shrink-0 ${
                     currentStep >= step.number
                       ? "bg-blue-500 border-blue-500 text-white"
                       : "border-gray-300 text-gray-400"
                   }`}
                 >
                   {currentStep > step.number ? (
-                    <CheckCircle className="w-6 h-6" />
+                    <CheckCircle className="w-5 h-5" />
                   ) : (
                     step.number
                   )}
                 </div>
-                {index < steps.length - 1 && (
+                <div className="flex-1">
                   <div
-                    className={`h-0.5 w-20 mx-4 transition-colors ${
-                      currentStep > step.number ? "bg-blue-500" : "bg-gray-300"
+                    className={`font-medium transition-colors ${
+                      currentStep >= step.number
+                        ? "text-blue-600"
+                        : "text-gray-400"
                     }`}
-                  />
-                )}
+                  >
+                    {step.title}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {step.description}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-          <div className="flex justify-between">
-            {steps.map((step) => (
-              <div key={step.number} className="text-center">
-                <div
-                  className={`font-medium transition-colors ${
-                    currentStep >= step.number
-                      ? "text-blue-600"
-                      : "text-gray-400"
-                  }`}
-                >
-                  {step.title}
+
+          {/* Desktop Steps - Horizontal Layout */}
+          <div className="hidden lg:block">
+            <div className="flex items-center justify-between mb-4">
+              {steps.map((step, index) => (
+                <div key={step.number} className="flex items-center">
+                  <div
+                    className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-colors ${
+                      currentStep >= step.number
+                        ? "bg-blue-500 border-blue-500 text-white"
+                        : "border-gray-300 text-gray-400"
+                    }`}
+                  >
+                    {currentStep > step.number ? (
+                      <CheckCircle className="w-6 h-6" />
+                    ) : (
+                      step.number
+                    )}
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div
+                      className={`h-0.5 w-20 mx-4 transition-colors ${
+                        currentStep > step.number
+                          ? "bg-blue-500"
+                          : "bg-gray-300"
+                      }`}
+                    />
+                  )}
                 </div>
-                <div className="text-sm text-gray-500">{step.description}</div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="flex justify-between">
+              {steps.map((step) => (
+                <div key={step.number} className="text-center">
+                  <div
+                    className={`font-medium transition-colors ${
+                      currentStep >= step.number
+                        ? "text-blue-600"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {step.title}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {step.description}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 

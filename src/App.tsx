@@ -1,4 +1,4 @@
-import { Header } from "./components/Header";
+import { Layout } from "./components/Layout";
 import { HomePage } from "./components/HomePage";
 import { DiscoverProjects } from "./components/DiscoverProjects";
 import { CreateProject } from "./components/CreateProject";
@@ -122,7 +122,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white cyber-grid relative">
+    <div className="relative">
       {/* Scan line effect */}
       <div className="scan-line"></div>
 
@@ -181,26 +181,25 @@ export default function App() {
         />
       </div>
 
-      <div className="relative z-10">
-        <Header currentPage={currentPage} onNavigate={navigateToPage} />
+      {/* Glitch effect overlay */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-40"
+        animate={{
+          x: [-100, window.innerWidth + 100],
+          opacity: [0, 1, 0],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatDelay: 3,
+          ease: "easeInOut",
+        }}
+      />
 
-        {/* Glitch effect overlay */}
-        <motion.div
-          className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-50"
-          animate={{
-            x: [-100, window.innerWidth + 100],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatDelay: 3,
-            ease: "easeInOut",
-          }}
-        />
-
+      {/* Layout with Header and Content */}
+      <Layout currentPage={currentPage} onNavigate={navigateToPage}>
         {renderPage()}
-      </div>
+      </Layout>
     </div>
   );
 }

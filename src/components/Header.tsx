@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
-import { ChevronDown, Sun, User, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+import { ChevronDown, Sun, User, Zap, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type PageType =
   | "home"
@@ -13,17 +13,27 @@ type PageType =
 interface HeaderProps {
   currentPage?: PageType;
   onNavigate?: (page: PageType) => void;
+  isMobileMenuOpen?: boolean;
+  setIsMobileMenuOpen?: (open: boolean) => void;
 }
 
-export function Header({ currentPage = "home", onNavigate }: HeaderProps) {
+export function Header({
+  currentPage = "home",
+  onNavigate,
+  isMobileMenuOpen = false,
+  setIsMobileMenuOpen,
+}: HeaderProps) {
   const handleNavigation = (page: PageType) => {
     if (onNavigate) {
       onNavigate(page);
     }
+    if (setIsMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
   };
 
   return (
-    <header className="bg-white/80 backdrop-blur-xl border-b border-cyan-200/50 px-4 py-3 sticky top-0 z-50">
+    <header className="bg-white/95 backdrop-blur-xl border-b border-cyan-200/50 px-4 py-3 w-full shadow-lg">
       {/* Holographic stripe */}
       <motion.div
         className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
@@ -65,7 +75,8 @@ export function Header({ currentPage = "home", onNavigate }: HeaderProps) {
             </motion.div>
           </motion.div>
 
-          <nav className="flex items-center space-x-6">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
             {[
               { key: "discover", label: "Discover" },
               { key: "create", label: "Launch Project" },
@@ -121,78 +132,113 @@ export function Header({ currentPage = "home", onNavigate }: HeaderProps) {
         </div>
 
         <div className="flex items-center space-x-4">
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hover:bg-cyan-50 hover:text-cyan-600"
-            >
-              <Sun className="w-4 h-4" />
-            </Button>
-          </motion.div>
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hover:bg-cyan-50 hover:text-cyan-600"
+              >
+                <Sun className="w-4 h-4" />
+              </Button>
+            </motion.div>
 
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-cyan-200 hover:border-cyan-400 hover:bg-cyan-50 hover:text-cyan-600 transition-all duration-300"
-            >
-              Connect Wallet
-            </Button>
-          </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-cyan-200 hover:border-cyan-400 hover:bg-cyan-50 hover:text-cyan-600 transition-all duration-300"
+              >
+                Connect Wallet
+              </Button>
+            </motion.div>
 
-          <motion.button
-            onClick={() => handleNavigation("admin")}
-            className={`p-2 rounded-lg transition-all duration-300 ${
-              currentPage === "admin"
-                ? "bg-cyan-100 text-cyan-600 neon-glow"
-                : "hover:bg-gray-100"
-            }`}
-            title="Admin Panel"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <User className="w-4 h-4" />
-            {currentPage === "admin" && (
+            <motion.button
+              onClick={() => handleNavigation("admin")}
+              className={`p-2 rounded-lg transition-all duration-300 ${
+                currentPage === "admin"
+                  ? "bg-cyan-100 text-cyan-600 neon-glow"
+                  : "hover:bg-gray-100"
+              }`}
+              title="Admin Panel"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <User className="w-4 h-4" />
+              {currentPage === "admin" && (
+                <motion.div
+                  className="absolute inset-0 bg-cyan-400/20 rounded-lg"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              )}
+            </motion.button>
+
+            <motion.div
+              className="flex items-center space-x-2 bg-gray-900 text-white px-3 py-1 rounded-lg relative overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+            >
               <motion.div
-                className="absolute inset-0 bg-cyan-400/20 rounded-lg"
-                animate={{ opacity: [0.5, 1, 0.5] }}
+                className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-transparent"
+                animate={{ x: [-100, 100] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div
+                className="w-6 h-6 bg-cyan-400 rounded-full relative z-10"
+                animate={{
+                  boxShadow: [
+                    "0 0 5px #00ffff",
+                    "0 0 20px #00ffff",
+                    "0 0 5px #00ffff",
+                  ],
+                }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-            )}
-          </motion.button>
+              <div className="text-sm relative z-10">
+                <motion.div
+                  className="font-medium"
+                  animate={{ opacity: [1, 0.7, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  7xdk...mN9P
+                </motion.div>
+                <div className="text-xs text-gray-300">$247.50 USDC</div>
+              </div>
+            </motion.div>
+          </div>
 
-          <motion.div
-            className="flex items-center space-x-2 bg-gray-900 text-white px-3 py-1 rounded-lg relative overflow-hidden"
-            whileHover={{ scale: 1.05 }}
+          {/* Mobile Menu Button */}
+          <motion.button
+            onClick={() => setIsMobileMenuOpen?.(!isMobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-transparent"
-              animate={{ x: [-100, 100] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="w-6 h-6 bg-cyan-400 rounded-full relative z-10"
-              animate={{
-                boxShadow: [
-                  "0 0 5px #00ffff",
-                  "0 0 20px #00ffff",
-                  "0 0 5px #00ffff",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <div className="text-sm relative z-10">
-              <motion.div
-                className="font-medium"
-                animate={{ opacity: [1, 0.7, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                7xdk...mN9P
-              </motion.div>
-              <div className="text-xs text-gray-300">$247.50 USDC</div>
-            </div>
-          </motion.div>
+            <AnimatePresence mode="wait">
+              {isMobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="w-6 h-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
       </div>
     </header>

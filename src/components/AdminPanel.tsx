@@ -475,9 +475,9 @@ export function AdminPanel({ onProjectClick }: AdminPanelProps) {
                       <Card className="shadow-lg border-l-4 border-l-cyan-400 hover:shadow-xl transition-all duration-300 bg-white">
                         <motion.div className="absolute inset-0 bg-gradient-to-r from-cyan-50/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                         <CardContent className="p-6 relative">
-                          <div className="flex items-start justify-between mb-4">
+                          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
                             <div className="flex-1">
-                              <div className="flex items-center space-x-3 mb-2">
+                              <div className="flex flex-wrap items-center gap-2 mb-2">
                                 <motion.h3
                                   className="text-xl font-bold"
                                   whileHover={{ scale: 1.05 }}
@@ -554,9 +554,52 @@ export function AdminPanel({ onProjectClick }: AdminPanelProps) {
                                   Whitepaper
                                 </a>
                               </div>
+
+                              {/* Mobile Action Buttons - Show on small screens */}
+                              <div className="flex flex-col space-y-2 mt-4 lg:hidden">
+                                <motion.div
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Button
+                                    onClick={() => handleApprove(project.id)}
+                                    className="bg-green-500 hover:bg-green-600 text-white neon-glow w-full"
+                                  >
+                                    <CheckCircle className="w-4 h-4 mr-2" />
+                                    Approve
+                                  </Button>
+                                </motion.div>
+                                <motion.div
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Button
+                                    onClick={() => handleReject(project.id)}
+                                    variant="outline"
+                                    className="border-red-300 text-red-600 hover:bg-red-50 w-full"
+                                  >
+                                    <X className="w-4 h-4 mr-2" />
+                                    Reject
+                                  </Button>
+                                </motion.div>
+                                <motion.div
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="border-cyan-300 text-cyan-600 hover:bg-cyan-50 w-full"
+                                  >
+                                    <Eye className="w-4 h-4 mr-1" />
+                                    Review
+                                  </Button>
+                                </motion.div>
+                              </div>
                             </div>
 
-                            <div className="flex flex-col space-y-2 ml-6">
+                            {/* Desktop Action Buttons - Hide on small screens */}
+                            <div className="hidden lg:flex flex-col space-y-2 ml-6">
                               <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}

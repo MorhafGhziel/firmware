@@ -1,4 +1,4 @@
-import { Card, CardContent } from "./ui/card";
+import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import {
@@ -7,11 +7,10 @@ import {
   TrendingUp,
   ArrowRight,
   CheckCircle,
-  Users,
   DollarSign,
   X,
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HowItWorksProps {
   isOpen: boolean;
@@ -82,7 +81,7 @@ export function HowItWorks({ isOpen, onClose }: HowItWorksProps) {
       y: 0,
       transition: {
         duration: 0.4,
-        ease: "easeOut",
+        ease: "easeOut" as const,
         staggerChildren: 0.15,
         delayChildren: 0.2,
       },
@@ -93,7 +92,7 @@ export function HowItWorks({ isOpen, onClose }: HowItWorksProps) {
       y: 50,
       transition: {
         duration: 0.3,
-        ease: "easeIn",
+        ease: "easeIn" as const,
       },
     },
   };
@@ -110,7 +109,7 @@ export function HowItWorks({ isOpen, onClose }: HowItWorksProps) {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };

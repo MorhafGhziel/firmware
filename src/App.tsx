@@ -6,6 +6,7 @@ import { Portfolio } from "./components/Portfolio";
 import { AdminPanel } from "./components/AdminPanel";
 import { ProjectDetails } from "./components/ProjectDetails";
 import { FundingProcess } from "./components/FundingProcess";
+import { ThemeProvider } from "./components/ThemeProvider";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -122,84 +123,86 @@ export default function App() {
   };
 
   return (
-    <div className="relative">
-      {/* Scan line effect */}
-      <div className="scan-line"></div>
+    <ThemeProvider>
+      <div className="relative">
+        {/* Scan line effect */}
+        <div className="scan-line"></div>
 
-      {/* Floating particles */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {particles.map((particle) => (
+        {/* Floating particles */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+          {particles.map((particle) => (
+            <motion.div
+              key={particle.id}
+              className="particle"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+              }}
+              animate={{
+                y: [-20, 20, -20],
+                x: [-10, 10, -10],
+                opacity: [0.2, 1, 0.2],
+              }}
+              transition={{
+                duration: 4 + particle.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: particle.delay,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Morphing background shapes */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
           <motion.div
-            key={particle.id}
-            className="particle"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-            }}
+            className="absolute top-10 right-20 w-32 h-32 bg-gradient-to-r from-cyan-200/20 to-cyan-400/20 morph"
             animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-              opacity: [0.2, 1, 0.2],
+              rotate: [0, 360],
+              scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: 4 + particle.delay,
+              duration: 12,
               repeat: Infinity,
-              ease: "easeInOut",
-              delay: particle.delay,
+              ease: "linear",
             }}
           />
-        ))}
-      </div>
+          <motion.div
+            className="absolute bottom-20 left-10 w-24 h-24 bg-gradient-to-r from-cyan-300/20 to-cyan-400/20 morph"
+            animate={{
+              rotate: [360, 0],
+              scale: [1.2, 1, 1.2],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        </div>
 
-      {/* Morphing background shapes */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {/* Glitch effect overlay */}
         <motion.div
-          className="absolute top-10 right-20 w-32 h-32 bg-gradient-to-r from-cyan-200/20 to-cyan-400/20 morph"
+          className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-40"
           animate={{
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
+            x: [-100, window.innerWidth + 100],
+            opacity: [0, 1, 0],
           }}
           transition={{
-            duration: 12,
+            duration: 2,
             repeat: Infinity,
-            ease: "linear",
+            repeatDelay: 3,
+            ease: "easeInOut",
           }}
         />
-        <motion.div
-          className="absolute bottom-20 left-10 w-24 h-24 bg-gradient-to-r from-cyan-300/20 to-cyan-500/20 morph"
-          animate={{
-            rotate: [360, 0],
-            scale: [1.2, 1, 1.2],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
+
+        {/* Layout with Header and Content */}
+        <Layout currentPage={currentPage} onNavigate={navigateToPage}>
+          {renderPage()}
+        </Layout>
       </div>
-
-      {/* Glitch effect overlay */}
-      <motion.div
-        className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-40"
-        animate={{
-          x: [-100, window.innerWidth + 100],
-          opacity: [0, 1, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatDelay: 3,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Layout with Header and Content */}
-      <Layout currentPage={currentPage} onNavigate={navigateToPage}>
-        {renderPage()}
-      </Layout>
-    </div>
+    </ThemeProvider>
   );
 }

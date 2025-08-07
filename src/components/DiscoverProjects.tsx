@@ -228,10 +228,10 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center mb-8">
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 dark:from-gray-100 dark:via-blue-100 dark:to-indigo-100 bg-clip-text text-transparent">
               Discover Projects
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Explore cutting-edge blockchain projects seeking investment.
               Filter by category, funding status, and more to find opportunities
               that match your investment strategy.
@@ -240,29 +240,29 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
 
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50">
-              <div className="text-3xl font-bold text-blue-600 mb-2">
+            <Card className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
                 {mockProjects.length}
               </div>
-              <div className="text-gray-600">Active Projects</div>
+              <div className="text-gray-600 dark:text-gray-300">Active Projects</div>
             </Card>
-            <Card className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50">
-              <div className="text-3xl font-bold text-green-600 mb-2">
+            <Card className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
                 $12.3M
               </div>
-              <div className="text-gray-600">Total Raised</div>
+              <div className="text-gray-600 dark:text-gray-300">Total Raised</div>
             </Card>
-            <Card className="text-center p-6 bg-gradient-to-br from-purple-50 to-violet-50">
-              <div className="text-3xl font-bold text-purple-600 mb-2">
+            <Card className="text-center p-6 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20">
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                 2,847
               </div>
-              <div className="text-gray-600">Total Investors</div>
+              <div className="text-gray-600 dark:text-gray-300">Total Investors</div>
             </Card>
-            <Card className="text-center p-6 bg-gradient-to-br from-orange-50 to-amber-50">
-              <div className="text-3xl font-bold text-orange-600 mb-2">
+            <Card className="text-center p-6 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20">
+              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">
                 18.5x
               </div>
-              <div className="text-gray-600">Best Return</div>
+              <div className="text-gray-600 dark:text-gray-300">Best Return</div>
             </Card>
           </div>
         </motion.div>
@@ -276,19 +276,19 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
         >
           <Card className="p-6">
             <div className="flex items-center mb-4">
-              <SlidersHorizontal className="w-5 h-5 mr-2 text-gray-600" />
-              <h3 className="font-semibold text-lg">Filter & Sort</h3>
+              <SlidersHorizontal className="w-5 h-5 mr-2 text-muted-foreground" />
+              <h3 className="font-semibold text-lg text-foreground">Filter & Sort</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Search */}
               <div className="relative lg:col-span-2">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <Input
                   placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 h-12 border-gray-200 focus:border-blue-400"
+                  className="pl-10 h-12 border-border focus:border-primary"
                 />
               </div>
 
@@ -297,7 +297,7 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
                 value={selectedCategory}
                 onValueChange={setSelectedCategory}
               >
-                <SelectTrigger className="h-12 border-gray-200">
+                <SelectTrigger className="h-12 border-border">
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -329,7 +329,7 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
 
               {/* Sort By */}
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="h-12 border-gray-200">
+                <SelectTrigger className="h-12 border-border">
                   <TrendingUp className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
@@ -359,12 +359,12 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
 
             return (
               <motion.div key={project.id} variants={itemVariants}>
-                <Card className="group hover:shadow-2xl transition-all duration-500 border-0 overflow-hidden bg-white shadow-lg hover:-translate-y-2">
+                <Card className="group hover:shadow-2xl dark:hover:shadow-cyan-500/20 transition-all duration-500 border-0 overflow-hidden bg-card shadow-lg dark:shadow-cyan-500/10 hover:-translate-y-2">
                   {/* Project Header */}
                   <div
                     className={`relative h-40 bg-gradient-to-br ${project.gradient} overflow-hidden`}
                   >
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                    <div className="absolute inset-0 bg-black/20 dark:bg-black/30 group-hover:bg-black/10 dark:group-hover:bg-black/20 transition-colors"></div>
 
                     {/* Badges */}
                     <div className="absolute top-3 left-3 flex flex-col gap-1">
@@ -402,29 +402,29 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
 
                   {/* Project Details */}
                   <CardContent className="p-4">
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                       {project.description}
                     </p>
 
                     {/* Key Metrics */}
                     <div className="space-y-3 mb-4">
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-500">Raised</span>
-                        <span className="font-semibold">
+                        <span className="text-muted-foreground">Raised</span>
+                        <span className="font-semibold text-foreground">
                           ${(project.committed / 1000).toFixed(0)}k
                         </span>
                       </div>
 
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-500">Token Price</span>
-                        <span className="font-semibold">
+                        <span className="text-muted-foreground">Token Price</span>
+                        <span className="font-semibold text-foreground">
                           ${project.tokenPrice}
                         </span>
                       </div>
 
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-500">Min Investment</span>
-                        <span className="font-semibold">
+                        <span className="text-muted-foreground">Min Investment</span>
+                        <span className="font-semibold text-foreground">
                           ${project.minInvestment}
                         </span>
                       </div>
@@ -435,7 +435,7 @@ export function DiscoverProjects({ onProjectClick }: DiscoverProjectsProps) {
                             value={Math.min(fundingPercentage, 100)}
                             className="h-2"
                           />
-                          <div className="flex justify-between text-xs text-gray-500">
+                          <div className="flex justify-between text-xs text-muted-foreground">
                             <span>
                               {Math.round(fundingPercentage)}% complete
                             </span>

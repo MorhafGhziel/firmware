@@ -1,6 +1,6 @@
 import { Header } from "./Header";
 import { Button } from "./ui/button";
-import { ChevronDown, Sun, User } from "lucide-react";
+import { ChevronDown, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -29,7 +29,7 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white cyber-grid">
+    <div className="min-h-screen bg-background cyber-grid">
       {/* Header - ABSOLUTELY ON TOP OF EVERYTHING */}
       <div className="fixed top-0 left-0 right-0 z-[999999] pointer-events-auto">
         <Header
@@ -51,7 +51,7 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <motion.div
-              className="absolute top-0 right-0 w-80 min-h-fit bg-white border-l border-cyan-200/50 shadow-2xl rounded-bl-lg"
+              className="absolute top-0 right-0 w-80 min-h-fit bg-card border-l border-border shadow-2xl rounded-bl-lg"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -71,8 +71,8 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
                       onClick={() => handleNavigation(item.key as PageType)}
                       className={`w-full text-left p-3 rounded-lg transition-all duration-300 ${
                         currentPage === item.key
-                          ? "bg-cyan-100 text-cyan-600 font-medium"
-                          : "text-gray-700 hover:bg-gray-100"
+                          ? "bg-primary/20 text-primary font-medium"
+                          : "text-foreground hover:bg-muted"
                       }`}
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
@@ -81,34 +81,20 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
                     </motion.button>
                   ))}
 
-                  <div className="pt-4 border-t border-gray-200">
+                  <div className="pt-4 border-t border-border">
                     <motion.a
                       href="#"
-                      className="flex items-center justify-between w-full p-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                      className="flex items-center justify-between w-full p-3 rounded-lg text-foreground hover:bg-muted transition-colors"
                       whileHover={{ x: 4 }}
                     >
                       How it Works
-                      <ChevronDown className="w-4 h-4 text-gray-500" />
+                      <ChevronDown className="w-4 h-4 text-muted-foreground" />
                     </motion.a>
                   </div>
                 </nav>
 
                 {/* Mobile Actions */}
-                <div className="space-y-4 pt-4 border-t border-gray-200">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-full justify-start hover:bg-cyan-50 hover:text-cyan-600"
-                    >
-                      <Sun className="w-4 h-4 mr-3" />
-                      Theme
-                    </Button>
-                  </motion.div>
-
+                <div className="space-y-4 pt-4 border-t border-border">
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -116,7 +102,7 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full justify-start border-cyan-200 hover:border-cyan-400 hover:bg-cyan-50 hover:text-cyan-600"
+                      className="w-full justify-start border-border hover:border-primary hover:bg-primary/10 hover:text-primary"
                     >
                       Connect Wallet
                     </Button>
@@ -126,8 +112,8 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
                     onClick={() => handleNavigation("admin")}
                     className={`w-full p-3 rounded-lg transition-all duration-300 flex items-center ${
                       currentPage === "admin"
-                        ? "bg-cyan-100 text-cyan-600"
-                        : "hover:bg-gray-100"
+                        ? "bg-primary/20 text-primary"
+                        : "hover:bg-muted"
                     }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -137,7 +123,7 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
                   </motion.button>
 
                   <motion.div
-                    className="flex items-center space-x-3 bg-gray-900 text-white p-3 rounded-lg"
+                    className="flex items-center space-x-3 bg-card text-card-foreground p-3 rounded-lg border border-border"
                     whileHover={{ scale: 1.02 }}
                   >
                     <motion.div
@@ -153,7 +139,9 @@ export function Layout({ children, currentPage, onNavigate }: LayoutProps) {
                     />
                     <div className="text-sm">
                       <div className="font-medium">7xdk...mN9P</div>
-                      <div className="text-xs text-gray-300">$247.50 USDC</div>
+                      <div className="text-xs text-muted-foreground">
+                        $247.50 USDC
+                      </div>
                     </div>
                   </motion.div>
                 </div>

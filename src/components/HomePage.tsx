@@ -102,7 +102,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
     <div className="min-h-screen">
       {/* Hero Section */}
       <motion.section
-        className="relative overflow-hidden bg-white text-gray-900 py-20"
+        className="relative overflow-hidden bg-background text-foreground py-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -144,7 +144,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
             >
               <Badge
                 variant="secondary"
-                className="mb-6 bg-cyan-50 text-cyan-600 border-cyan-200 px-4 py-2 hover:bg-cyan-100 transition-colors"
+                className="mb-6 bg-primary/10 text-primary border-primary/20 px-4 py-2 hover:bg-primary/20 transition-colors"
               >
                 <motion.div
                   animate={{ rotate: [0, 360] }}
@@ -193,7 +193,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed"
+              className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -216,7 +216,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                 <Button
                   size="lg"
                   onClick={() => onNavigate("discover")}
-                  className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden neon-glow"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden neon-glow"
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -240,18 +240,18 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                   size="lg"
                   onClick={() => onNavigate("create")}
                   variant="outline"
-                  className="border-cyan-300 text-cyan-600 hover:bg-cyan-50 px-8 py-6 text-lg transition-all duration-300 relative"
+                  className="border-primary text-primary hover:bg-primary/10 px-8 py-6 text-lg transition-all duration-300 relative"
                 >
                   <PlusCircle className="w-5 h-5 mr-2" />
                   Launch Project
                   <motion.div
-                    className="absolute inset-0 border border-cyan-400 rounded opacity-0"
+                    className="absolute inset-0 border border-primary rounded opacity-0"
                     whileHover={{ opacity: 1 }}
                     animate={{
                       boxShadow: [
-                        "0 0 0 0 rgba(6, 182, 212, 0)",
-                        "0 0 0 4px rgba(6, 182, 212, 0.1)",
-                        "0 0 0 0 rgba(6, 182, 212, 0)",
+                        "0 0 0 0 rgba(0, 255, 255, 0)",
+                        "0 0 0 4px rgba(0, 255, 255, 0.1)",
+                        "0 0 0 0 rgba(0, 255, 255, 0)",
                       ],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
@@ -277,12 +277,12 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                   whileHover={{ scale: 1.05 }}
                 >
                   <motion.div
-                    className="text-3xl font-bold text-cyan-600 mb-2"
+                    className="text-3xl font-bold text-primary mb-2"
                     animate={{
                       textShadow: [
-                        "0 0 5px #06b6d4",
-                        "0 0 15px #06b6d4",
-                        "0 0 5px #06b6d4",
+                        "0 0 5px #00ffff",
+                        "0 0 15px #00ffff",
+                        "0 0 5px #00ffff",
                       ],
                     }}
                     transition={{
@@ -293,7 +293,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                   >
                     {stat.value}
                   </motion.div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -325,7 +325,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
             <h2 className="text-4xl font-bold mb-4">
               High-Potential Opportunity
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-muted-foreground text-lg">
               Vetted by our investment team for exceptional growth potential
             </p>
           </div>
@@ -334,7 +334,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="overflow-hidden shadow-xl border-0 max-w-4xl mx-auto bg-white relative">
+            <Card className="overflow-hidden shadow-xl border-0 max-w-4xl mx-auto bg-card relative">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 via-transparent to-cyan-400/5"
                 animate={{ x: [-100, 100, -100] }}
@@ -439,7 +439,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
 
       {/* Quick Actions Section */}
       <motion.section
-        className="py-16 bg-gray-50/50"
+        className="py-16 bg-muted/50 dark:bg-muted/30"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
@@ -447,7 +447,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Get Started Today</h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-muted-foreground text-lg">
               Choose your path to participate in the decentralized economy
             </p>
           </div>
@@ -465,7 +465,8 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                 title: "For Investors",
                 subtitle: "Discover high-potential projects",
                 action: "Start investing",
-                gradient: "from-cyan-400 to-cyan-600",
+                gradient:
+                  "from-cyan-400 to-cyan-600 dark:from-cyan-500 dark:to-cyan-700",
                 features: [
                   "Early access to promising projects",
                   "Transparent funding process",
@@ -479,7 +480,8 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                 title: "For Founders",
                 subtitle: "Launch your blockchain project",
                 action: "Submit project",
-                gradient: "from-cyan-500 to-cyan-700",
+                gradient:
+                  "from-cyan-500 to-cyan-700 dark:from-cyan-600 dark:to-cyan-800",
                 features: [
                   "Access to qualified investors",
                   "Expert project review",
@@ -493,7 +495,8 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                 title: "Portfolio",
                 subtitle: "Track your investments",
                 action: "View portfolio",
-                gradient: "from-cyan-600 to-cyan-800",
+                gradient:
+                  "from-cyan-600 to-cyan-800 dark:from-cyan-700 dark:to-cyan-900",
                 features: [
                   "Real-time portfolio tracking",
                   "Performance analytics",
@@ -509,15 +512,15 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                 whileTap={{ scale: 0.98 }}
               >
                 <Card
-                  className="group hover:shadow-2xl transition-all duration-500 border-0 overflow-hidden bg-white shadow-lg cursor-pointer relative"
+                  className="group hover:shadow-2xl dark:hover:shadow-cyan-500/20 transition-all duration-500 border-0 overflow-hidden bg-card shadow-lg dark:shadow-cyan-500/10 cursor-pointer relative"
                   onClick={card.onClick}
                 >
-                  <motion.div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <motion.div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-transparent dark:from-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div
                     className={`relative h-48 bg-gradient-to-br ${card.gradient} overflow-hidden`}
                   >
-                    <motion.div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                    <motion.div className="absolute inset-0 bg-black/20 dark:bg-black/30 group-hover:bg-black/10 dark:group-hover:bg-black/20 transition-colors" />
 
                     <motion.div
                       className="absolute top-4 right-4 w-16 h-16 bg-white/10 rounded-full blur-lg"
@@ -543,7 +546,9 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                         <h3 className="text-2xl font-bold mb-2">
                           {card.title}
                         </h3>
-                        <p className="text-cyan-100">{card.subtitle}</p>
+                        <p className="text-cyan-100 dark:text-cyan-200">
+                          {card.subtitle}
+                        </p>
                       </div>
 
                       <div className="flex items-center text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -554,7 +559,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                   </div>
 
                   <CardContent className="p-6">
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-muted-foreground">
                       {card.features.map((feature, featureIndex) => (
                         <motion.li
                           key={featureIndex}
@@ -578,13 +583,13 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
 
       {/* CTA Section */}
       <motion.section
-        className="py-20 bg-gradient-to-br from-cyan-500 to-cyan-700 text-white relative overflow-hidden"
+        className="py-20 bg-gradient-to-br from-primary via-primary/90 to-primary/70 dark:from-primary/90 dark:via-primary/80 dark:to-primary/60 text-primary-foreground relative overflow-hidden"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent dark:via-white/5"
           animate={{ x: [-100, 100, -100] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -594,16 +599,16 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
             className="text-4xl font-bold mb-6"
             animate={{
               textShadow: [
-                "0 0 10px rgba(255,255,255,0.5)",
-                "0 0 30px rgba(255,255,255,0.8)",
-                "0 0 10px rgba(255,255,255,0.5)",
+                "0 0 10px rgba(255,255,255,0.6)",
+                "0 0 30px rgba(255,255,255,0.9)",
+                "0 0 10px rgba(255,255,255,0.6)",
               ],
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             Ready to Build Wealth?
           </motion.h2>
-          <p className="text-xl text-cyan-100 mb-8">
+          <p className="text-xl text-primary-foreground/90 mb-8">
             Join successful investors funding breakthrough blockchain projects
             with exceptional growth potential.
           </p>
@@ -612,7 +617,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
               <Button
                 size="lg"
                 onClick={() => onNavigate("discover")}
-                className="bg-white text-cyan-600 hover:bg-gray-100 px-8 py-6 text-lg shadow-xl"
+                className="bg-background text-primary hover:bg-background/90 dark:bg-background dark:text-primary dark:hover:bg-background/80 px-8 py-6 text-lg shadow-xl dark:shadow-cyan-500/20"
               >
                 <DollarSign className="w-5 h-5 mr-2" />
                 Start Investing
@@ -623,7 +628,7 @@ export function HomePage({ onProjectClick, onNavigate }: HomePageProps) {
                 size="lg"
                 onClick={() => onNavigate("create")}
                 variant="outline"
-                className="border-white/30 text-white bg-transparent hover:bg-white/10 px-8 py-6 text-lg"
+                className="border-white/30 text-white bg-transparent hover:bg-white/10 dark:border-cyan-400/30 dark:text-cyan-200 dark:hover:bg-cyan-400/10 px-8 py-6 text-lg"
               >
                 Launch Your Project
               </Button>
